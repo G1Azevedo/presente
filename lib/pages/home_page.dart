@@ -8,64 +8,124 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bem-vinda à nossa história de amor 💕'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
+      body: SingleChildScrollView(
+        child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.favorite, size: 80, color: Colors.pink),
+              // Banner com imagem romântica
+              ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(32),
+                  bottomRight: Radius.circular(32),
+                ),
+                child: Image.asset(
+                  'assets/images/banner.jpg', // Substitua pelo caminho da sua imagem
+                  width: double.infinity,
+                  height: 220,
+                  fit: BoxFit.cover,
+                ),
+              ),
+
+              const SizedBox(height: 24),
+
+              const Text(
+                'Bem-vinda à nossa história de amor 💕',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'DancingScript', // Fonte romântica (adicione no pubspec)
+                  color: Colors.pinkAccent,
+                ),
+              ),
+
               const SizedBox(height: 20),
+
+              TweenAnimationBuilder<double>(
+                tween: Tween(begin: 0.0, end: 1.0),
+                duration: const Duration(seconds: 1),
+                builder: (context, value, child) {
+                  return Opacity(
+                    opacity: value,
+                    child: Transform.scale(scale: value, child: child),
+                  );
+                },
+                child: const Icon(Icons.favorite, size: 60, color: Colors.pink),
+              ),
+
+              const SizedBox(height: 30),
+
               const Text(
                 'Escolha uma opção:',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
               ),
+
               const SizedBox(height: 30),
-              ElevatedButton.icon(
-                icon: const Icon(Icons.timeline),
-                label: const Text('Linha do Tempo do Amor'),
-                style: ElevatedButton.styleFrom(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                ),
+
+              _buildMenuButton(
+                context,
+                icon: Icons.timeline,
+                label: 'Linha do Tempo do Amor',
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const LinhaDoTempoPage(),
+                      builder: (_) => const LinhaDoTempoPage(),
                     ),
                   );
                 },
               ),
+
               const SizedBox(height: 16),
-              ElevatedButton.icon(
-                icon: const Icon(Icons.photo_album),
-                label: const Text('Galeria de Fotos'),
-                onPressed: () {},
+
+              _buildMenuButton(
+                context,
+                icon: Icons.photo_album,
+                label: 'Galeria de Fotos',
+                onPressed: () {
+                  // Adicione funcionalidade futura
+                },
               ),
+
               const SizedBox(height: 16),
-              ElevatedButton.icon(
-                icon: const Icon(Icons.person),
-                label: const Text('Características do Casal'),
+
+              _buildMenuButton(
+                context,
+                icon: Icons.person,
+                label: 'Características do Casal',
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const CaracteristicasCasalPage(),
+                      builder: (_) => const CaracteristicasCasalPage(),
                     ),
                   );
                 },
               ),
+
+              const SizedBox(height: 40),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildMenuButton(BuildContext context,
+      {required IconData icon,
+      required String label,
+      required VoidCallback onPressed}) {
+    return ElevatedButton.icon(
+      icon: Icon(icon, size: 28),
+      label: Text(label, style: const TextStyle(fontSize: 18)),
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        backgroundColor: Colors.pinkAccent.shade100,
+        foregroundColor: Colors.white,
+        elevation: 4,
+      ),
+      onPressed: onPressed,
     );
   }
 }
