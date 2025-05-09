@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'lara_page.dart';
+import 'gabriel_page.dart';
 
 class CaracteristicasCasalPage extends StatelessWidget {
   const CaracteristicasCasalPage({super.key});
@@ -9,10 +11,12 @@ class CaracteristicasCasalPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Características do Casal 💑'),
         centerTitle: true,
+        backgroundColor: Colors.pinkAccent,
       ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 24),
             const Text(
@@ -22,26 +26,39 @@ class CaracteristicasCasalPage extends StatelessWidget {
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Georgia',
+                color: Colors.pinkAccent,
               ),
             ),
             const SizedBox(height: 50),
+            // Cards de Gabriel e Lara
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _buildPersonCard(
                   context,
                   nome: 'Gabriel',
                   imagem: 'assets/images/gabriel.jpg',
                   onTap: () {
-                    // Navigator.push(context, MaterialPageRoute(builder: (_) => const GabrielPage()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const GabrielPage(),
+                      ),
+                    );
                   },
                 ),
+                const SizedBox(width: 24), // Espaçamento entre os cards
                 _buildPersonCard(
                   context,
                   nome: 'Lara',
                   imagem: 'assets/images/lara.jpg',
                   onTap: () {
-                    // Navigator.push(context, MaterialPageRoute(builder: (_) => const LaraPage()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const LaraPage(),
+                      ),
+                    );
                   },
                 ),
               ],
@@ -65,7 +82,6 @@ class CaracteristicasCasalPage extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
-                  // ignore: deprecated_member_use
                   color: Colors.black.withOpacity(0.15),
                   blurRadius: 10,
                   offset: const Offset(0, 5),
