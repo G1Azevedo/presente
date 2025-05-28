@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:linha_do_tempo_amor/pages/caracteristicas_casal_page.dart';
 import 'linha_do_tempo_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,9 +117,7 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildMenuButton(BuildContext context,
-      {required IconData icon,
-      required String label,
-      required VoidCallback onPressed}) {
+      {required IconData icon, required String label, required VoidCallback onPressed}) {
     return ElevatedButton.icon(
       icon: Icon(icon, size: 28),
       label: Text(label, style: const TextStyle(fontSize: 18)),

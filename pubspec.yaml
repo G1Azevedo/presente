@@ -12,6 +12,9 @@ dependencies:
     sdk: flutter
   just_audio: ^0.9.36
   cupertino_icons: ^1.0.8
+  pocketbase: ^0.22.0
+  http: ^1.4.0
+  file_picker: ^10.1.9
 
 dev_dependencies:
   flutter_test:
