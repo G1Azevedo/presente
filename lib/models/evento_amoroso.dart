@@ -1,13 +1,12 @@
 class EventoAmoroso {
   String id;
-  final DateTime data;
+  final DateTime data; // Esta data é mantida como LOCAL no seu modelo
   final String titulo;
   final String descricao;
   final String imagem;
 
   EventoAmoroso({
     this.id = '',
-    // <- adicionado "const" aqui
     required this.data,
     required this.titulo,
     required this.descricao,
@@ -25,7 +24,11 @@ class EventoAmoroso {
   }
 
   Map<String, dynamic> toJson() {
-    return {'data': data.toIso8601String(), 'titulo': titulo, 'descricao': descricao};
+    return {
+      'data': data.toUtc().toIso8601String(),
+      'titulo': titulo,
+      'descricao': descricao
+    };
   }
 
   String get getData {
