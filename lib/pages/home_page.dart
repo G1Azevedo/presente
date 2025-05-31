@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
                   bottomRight: Radius.circular(32),
                 ),
                 child: Image.asset(
-                  'assets/images/banner.jpg', // Substitua pelo caminho da sua imagem
+                  'assets/images/banner.png',
                   width: double.infinity,
                   height: 220,
                   fit: BoxFit.cover,
