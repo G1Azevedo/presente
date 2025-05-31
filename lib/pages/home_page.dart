@@ -17,6 +17,7 @@ class _HomePageState extends State<HomePage> {
         child: Center(
           child: Column(
             children: [
+
               ClipRRect(
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(32),
