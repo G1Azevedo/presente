@@ -24,10 +24,10 @@ class _HomePageState extends State<HomePage> {
                   bottomRight: Radius.circular(32),
                 ),
                 child: Image.asset(
-                  'assets/images/banner.png',
+                  'assets/images/banner.png', // Certifique-se que o caminho está correto e a imagem existe
                   width: double.infinity,
-                  height: 220,
-                  fit: BoxFit.cover,
+                  // height: 300, // REMOVIDO: Deixe a altura ser determinada pela proporção
+                  fit: BoxFit.fitWidth, // MODIFICADO: Para ajustar à largura
                 ),
               ),
 
