@@ -15,101 +15,83 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
-          child: Column(
-            children: [
-
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(32),
-                  bottomRight: Radius.circular(32),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(32),
+                    bottomRight: Radius.circular(32),
+                  ),
+                  child: Image.asset(
+                    'assets/images/banner.png',
+                    width: double.infinity,
+                    fit: BoxFit.fitWidth,
+                  ),
                 ),
-                child: Image.asset(
-                  'assets/images/banner.png', // Certifique-se que o caminho está correto e a imagem existe
-                  width: double.infinity,
-                  // height: 300, // REMOVIDO: Deixe a altura ser determinada pela proporção
-                  fit: BoxFit.fitWidth, // MODIFICADO: Para ajustar à largura
+
+                const SizedBox(height: 30),
+
+                const Text(
+                  'Bem-vinda à nossa história de amor!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'DancingScript',
+                    color: Colors.pinkAccent,
+                  ),
                 ),
-              ),
 
-              const SizedBox(height: 24),
+                const SizedBox(height: 30),
 
-              const Text(
-                'Bem-vinda à nossa história de amor 💕',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'DancingScript', // Fonte romântica (adicione no pubspec)
-                  color: Colors.pinkAccent,
+                _buildMenuButton(
+                  context,
+                  icon: Icons.add_a_photo,
+                  label: 'Linha do Tempo do Amor',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const LinhaDoTempoPage(),
+                      ),
+                    );
+                  },
                 ),
-              ),
 
-              const SizedBox(height: 20),
+                const SizedBox(height: 16),
 
-              TweenAnimationBuilder<double>(
-                tween: Tween(begin: 0.0, end: 1.0),
-                duration: const Duration(seconds: 1),
-                builder: (context, value, child) {
-                  return Opacity(
-                    opacity: value,
-                    child: Transform.scale(scale: value, child: child),
-                  );
-                },
-                child: const Icon(Icons.favorite, size: 60, color: Colors.pink),
-              ),
+                _buildMenuButton(
+                  context,
+                  icon: Icons.photo_album,
+                  label: 'Galeria de Fotos',
+                  onPressed: () {
+                    // Adicione funcionalidade futura
+                  },
+                ),
 
-              const SizedBox(height: 30),
+                const SizedBox(height: 16),
 
-              const Text(
-                'Escolha uma opção:',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-              ),
+                _buildMenuButton(
+                  context,
+                  icon: Icons.people,
+                  label: 'Características do Casal',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const CaracteristicasCasalPage(),
+                      ),
+                    );
+                  },
+                ),
 
-              const SizedBox(height: 30),
-
-              _buildMenuButton(
-                context,
-                icon: Icons.timeline,
-                label: 'Linha do Tempo do Amor',
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const LinhaDoTempoPage(),
-                    ),
-                  );
-                },
-              ),
-
-              const SizedBox(height: 16),
-
-              _buildMenuButton(
-                context,
-                icon: Icons.photo_album,
-                label: 'Galeria de Fotos',
-                onPressed: () {
-                  // Adicione funcionalidade futura
-                },
-              ),
-
-              const SizedBox(height: 16),
-
-              _buildMenuButton(
-                context,
-                icon: Icons.person,
-                label: 'Características do Casal',
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const CaracteristicasCasalPage(),
-                    ),
-                  );
-                },
-              ),
-
-              const SizedBox(height: 40),
-            ],
+                const SizedBox(height: 40),
+              ],
+            ),
           ),
         ),
       ),
@@ -127,6 +109,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.pinkAccent.shade100,
         foregroundColor: Colors.white,
         elevation: 4,
+        minimumSize: const Size(280, 60),
       ),
       onPressed: onPressed,
     );
