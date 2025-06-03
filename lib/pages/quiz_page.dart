@@ -207,7 +207,7 @@ class _QuizPageState extends State<QuizPage> {
     } else {
       imagemPath =
           'assets/images/imagem_tentar_novamente.png'; // Substitua pelo nome da sua imagem de "tente novamente"
-      mensagemResultado = '😕 Essa tela não deveria aparecer.';
+      mensagemResultado = '😕 Ahn, você clicou errado?';
     }
 
     return Center(
