@@ -1,5 +1,7 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:linha_do_tempo_amor/pages/caracteristicas_casal_page.dart';
+import 'package:linha_do_tempo_amor/pages/quiz_page.dart'; // Alterado aqui
 import 'linha_do_tempo_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,9 +34,7 @@ class _HomePageState extends State<HomePage> {
                     fit: BoxFit.fitWidth,
                   ),
                 ),
-
                 const SizedBox(height: 30),
-
                 const Text(
                   'Bem-vinda à nossa história de amor!',
                   textAlign: TextAlign.center,
@@ -45,50 +45,54 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.pinkAccent,
                   ),
                 ),
-
                 const SizedBox(height: 30),
-
-                _buildMenuButton(
-                  context,
-                  icon: Icons.add_a_photo,
-                  label: 'Linha do Tempo do Amor',
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const LinhaDoTempoPage(),
-                      ),
-                    );
-                  },
+                FadeInUp(
+                  child: _buildMenuButton(
+                    context,
+                    icon: Icons.add_a_photo,
+                    label: 'Linha do Tempo do Amor',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const LinhaDoTempoPage(),
+                        ),
+                      );
+                    },
+                  ),
                 ),
-
                 const SizedBox(height: 16),
-
-                _buildMenuButton(
-                  context,
-                  icon: Icons.photo_album,
-                  label: 'Galeria de Fotos',
-                  onPressed: () {
-                    // Adicione funcionalidade futura
-                  },
+                FadeInUp(
+                  child: _buildMenuButton(
+                    context,
+                    icon: Icons.people,
+                    label: 'Características do Casal',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const CaracteristicasCasalPage(),
+                        ),
+                      );
+                    },
+                  ),
                 ),
-
                 const SizedBox(height: 16),
-
-                _buildMenuButton(
-                  context,
-                  icon: Icons.people,
-                  label: 'Características do Casal',
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const CaracteristicasCasalPage(),
-                      ),
-                    );
-                  },
+                FadeInUp(
+                  child: _buildMenuButton(
+                    context,
+                    icon: Icons.quiz,
+                    label: 'Quiz do Casal',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const QuizPage(), // Alterado aqui
+                        ),
+                      );
+                    },
+                  ),
                 ),
-
                 const SizedBox(height: 40),
               ],
             ),
@@ -99,7 +103,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildMenuButton(BuildContext context,
-      {required IconData icon, required String label, required VoidCallback onPressed}) {
+      {required IconData icon,
+      required String label,
+      required VoidCallback onPressed}) {
     return ElevatedButton.icon(
       icon: Icon(icon, size: 28),
       label: Text(label, style: const TextStyle(fontSize: 18)),
