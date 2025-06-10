@@ -202,11 +202,11 @@ class _QuizPageState extends State<QuizPage> {
 
     if (acertouTodas) {
       imagemPath =
-          'assets/images/imagem_parabens.png'; // Substitua pelo nome da sua imagem de parabéns
+          'assets/images/imagem_parabens.png';
       mensagemResultado = '🏆 Parabéns, você tem o gabarito do nosso amor.';
     } else {
       imagemPath =
-          'assets/images/imagem_tentar_novamente.png'; // Substitua pelo nome da sua imagem de "tente novamente"
+          'assets/images/imagem_tentar_novamente.png';
       mensagemResultado = '😕 Ahn, você clicou errado?';
     }
 
@@ -214,12 +214,10 @@ class _QuizPageState extends State<QuizPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Imagem condicional
           Image.asset(
             imagemPath,
-            height: 150, // Ajuste a altura conforme necessário
+            height: 150, 
             errorBuilder: (context, error, stackTrace) {
-              // Widget a ser exibido se a imagem não for encontrada
               return Container(
                 height: 150,
                 width: 150,
@@ -236,7 +234,6 @@ class _QuizPageState extends State<QuizPage> {
           ),
           const SizedBox(height: 20),
 
-          // Mensagem condicional
           Text(
             mensagemResultado,
             textAlign: TextAlign.center,
@@ -250,7 +247,6 @@ class _QuizPageState extends State<QuizPage> {
           ),
           const SizedBox(height: 20),
 
-          // Pontuação
           Text(
             'Sua pontuação: $_pontuacao de ${_perguntas.length}',
             style: const TextStyle(
@@ -260,7 +256,6 @@ class _QuizPageState extends State<QuizPage> {
           ),
           const SizedBox(height: 30),
 
-          // Botão Tentar Novamente
           ElevatedButton.icon(
             icon: const Icon(Icons.refresh),
             label: const Text('Tentar Novamente'),

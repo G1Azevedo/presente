@@ -1,6 +1,6 @@
 class EventoAmoroso {
   String id;
-  final DateTime data; // Esta data é mantida como LOCAL no seu modelo
+  final DateTime data;
   final String titulo;
   final String descricao;
   final String imagem;

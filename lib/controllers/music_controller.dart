@@ -1,4 +1,3 @@
-// lib/controllers/music_controller.dart
 import 'package:just_audio/just_audio.dart';
 import 'package:flutter/foundation.dart';
 
@@ -12,14 +11,10 @@ class MusicController {
   ValueNotifier<bool> isMutedNotifier = ValueNotifier<bool>(false);
 
   MusicController._internal() {
-    // Opcional: Ouvir mudanças no estado de reprodução para atualizar isPlayingNotifier
     _audioPlayer.playingStream.listen((playing) {
       isPlayingNotifier.value = playing;
     });
-    // Opcional: Ouvir mudanças no volume para atualizar isMutedNotifier
     _audioPlayer.volumeStream.listen((volume) {
-      // Consideramos mudo se o volume for 0.
-      // Isso pode precisar de ajuste se você permitir volumes intermediários via setVolume.
       isMutedNotifier.value = volume == 0.0;
     });
   }
@@ -29,9 +24,8 @@ class MusicController {
 
     try {
       await _audioPlayer.setAsset(assetPath);
-      await _audioPlayer.setLoopMode(LoopMode.one); // Para tocar em loop
+      await _audioPlayer.setLoopMode(LoopMode.one);
       _isInitialized = true;
-      // Não damos play aqui, esperamos o togglePlayPause ou o play inicial
     } catch (e) {
       debugPrint("Erro ao inicializar o áudio: $e");
     }
@@ -64,13 +58,11 @@ class MusicController {
       await _audioPlayer.setVolume(0.0);
       isMutedNotifier.value = true;
     } else {
-      await _audioPlayer.setVolume(1.0); // Volume máximo
+      await _audioPlayer.setVolume(1.0);
       isMutedNotifier.value = false;
     }
   }
 
-  // Para garantir que a música comece assim que o app estiver pronto
-  // e o usuário interagir (políticas de autoplay)
   Future<void> ensurePlaying() async {
     if (_isInitialized && !_audioPlayer.playing && !isMutedNotifier.value) {
       await play();

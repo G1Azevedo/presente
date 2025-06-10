@@ -47,7 +47,7 @@ class CaracteristicasCasalPage extends StatelessWidget {
                     );
                   },
                 ),
-                const SizedBox(width: 24), // Espaçamento entre os cards
+                const SizedBox(width: 24),
                 _buildPersonCard(
                   context,
                   nome: 'Lara',
